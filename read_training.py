@@ -1,6 +1,6 @@
 import infrastructure as infra
 
-def read_file(filename):
+def read_file(filename, bernoulli):
 	init_obj = infra.classes(2)
 	labels = open(filename)
 
@@ -21,6 +21,12 @@ def read_file(filename):
 			cur_element = a[i].split(':')
 			key = cur_element[0]
 			value = int(cur_element[1])
+
+			# for bernoulli -- values are purely boolean
+			# does it exist in the doc or not?
+			if(bernoulli):
+				value = 1
+
 			total_cts[review_num]+=value
 
 			if key in dict_itself:
@@ -38,4 +44,4 @@ def read_file(filename):
 
 
 if __name__ == '__main__':
-	read_file('spam_detection/train_email.txt')
+	read_file('spam_detection/train_email.txt', False)
