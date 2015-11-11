@@ -12,6 +12,7 @@ def read_file(filename, bernoulli):
 		review_num = int(a[0])
 		if review_num == -1:
 			review_num = 0
+		init_obj.num_per_class[review_num] +=1
 
 		if(bernoulli):
 			total_cts[review_num] += 1
@@ -38,8 +39,8 @@ def read_file(filename, bernoulli):
 			else:
 				dict_itself[key] = value
 
-	close(labels)
-	print init_obj.total_counts
+	labels.close()
+	return init_obj
 
 # the challenge here is that:
 # 		positive review --> 1

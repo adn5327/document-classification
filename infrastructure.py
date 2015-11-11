@@ -5,10 +5,12 @@ class classes(object):
 	def __init__(self, num_categories):
 		self.num_categories = num_categories
 		self.total_counts = list()
+		self.num_per_class = list()
 		self.dicts = list()
 		for i in range(num_categories):
 			self.dicts.append(dict())
 			self.total_counts.append(0)
+			self.num_per_class.append(0)
 
 def main():
 	a = classes(2)
