@@ -13,6 +13,9 @@ def read_file(filename, bernoulli):
 		if review_num == -1:
 			review_num = 0
 
+		if(bernoulli):
+			total_cts[review_num] += 1
+		
 		total_cts = init_obj.total_counts
 		dict_itself = init_obj.dicts[review_num]
 
@@ -26,8 +29,8 @@ def read_file(filename, bernoulli):
 			# does it exist in the doc or not?
 			if(bernoulli):
 				value = 1
-
-			total_cts[review_num]+=value
+			else:
+				total_cts[review_num]+=value
 
 			if key in dict_itself:
 				x = dict_itself[key]
