@@ -38,6 +38,7 @@ def read_file(filename, bernoulli):
 			else:
 				dict_itself[key] = value
 
+	close(labels)
 	print init_obj.total_counts
 
 # the challenge here is that:
