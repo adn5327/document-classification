@@ -14,8 +14,12 @@ def figure_out_class(a, train_data, movie):
 			key = cur_element[0]
 			value = cur_element[1]
 			if key in cur_dict:
-				cur_prob = cur_dict[key] / (1.0 * train_data.total_counts[j])
+				cur_prob = (cur_dict[key] + 1) / (1.0 * (train_data.total_counts[j] + len(cur_dict)))
 				cur_total += math.log(cur_prob)
+			else:
+				cur_prob = 1 / (1.0 * (train_data.total_counts[j] + len(cur_dict)))
+				cur_total += math.log(cur_prob)
+
 		prob_per_class.append(cur_total)
 	max_val = max(prob_per_class)
 	max_idx = prob_per_class.index(max_val)
@@ -52,4 +56,3 @@ def testdata(test_filename, train_filename, bernoulli, movie):
 
 if __name__ == '__main__':
 	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False)
-
