@@ -55,9 +55,5 @@ def testdata(test_filename, train_filename, bernoulli = False, movie = False, nu
 
 
 if __name__ == '__main__':
-<<<<<<< 0e104e4063e47659df0ea04d6a37295b88c04237
-	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False)
-=======
-	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False, 2)
 
->>>>>>> abstracting support for more than two categories
+	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False, 2)
