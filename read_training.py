@@ -1,7 +1,7 @@
 import infrastructure as infra
 
-def read_file(filename, bernoulli):
-	init_obj = infra.classes(2)
+def read_file(filename, bernoulli, num_categories):
+	init_obj = infra.classes(num_categories)
 	labels = open(filename)
 
 	lines = labels.readlines()
@@ -58,5 +58,5 @@ def read_file(filename, bernoulli):
 
 
 if __name__ == '__main__':
-	read_file('spam_detection/1train.txt', False)
-	# read_file('spam_detection/train_email.txt', False)
+
+	read_file('spam_detection/train_email.txt', False, 2)

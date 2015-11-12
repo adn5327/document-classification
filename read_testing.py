@@ -30,8 +30,8 @@ def figure_out_class(a, train_data, movie):
 
 # this function doesn't actually care if bernoulli or not
 # that only matters for training
-def testdata(test_filename, train_filename, bernoulli, movie):
-	train_data = rtrain.read_file(train_filename, bernoulli)
+def testdata(test_filename, train_filename, bernoulli = False, movie = False, num_categories = 2):
+	train_data = rtrain.read_file(train_filename, bernoulli, num_categories)
 	test_file = open(test_filename, 'r')
 	lines = test_file.readlines()
 
@@ -55,4 +55,9 @@ def testdata(test_filename, train_filename, bernoulli, movie):
 
 
 if __name__ == '__main__':
+<<<<<<< 0e104e4063e47659df0ea04d6a37295b88c04237
 	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False)
+=======
+	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False, 2)
+
+>>>>>>> abstracting support for more than two categories
