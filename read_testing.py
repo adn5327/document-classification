@@ -1,6 +1,7 @@
 import read_training as rtrain
 import math
 import infrastructure as infra
+import operator
 
 def figure_out_class(a, train_data, movie):
 	#go to each dictionary
@@ -48,12 +49,23 @@ def testdata(test_filename, train_filename, bernoulli = False, movie = False, nu
 			correct_count+=1
 
 	print "Accuracy {0:.5%}".format((correct_count*1.0)/total_count)
+	print '\n'
 
-
+	for i in range(len(train_data.dicts)):
+		cur_dict = train_data.dicts[i]
+		if i == 0 and movie == True:
+			print -1
+		else:
+			print i
+		for j in range(20):
+			key = max(cur_dict.iteritems(), key=operator.itemgetter(1))[0]
+			print key
+			del cur_dict[key]
+		print '\n'
 	test_file.close()
 
 
 
 if __name__ == '__main__':
 
-	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False, 2)
+	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', True, False, 2)
