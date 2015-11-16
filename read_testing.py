@@ -113,17 +113,10 @@ if __name__ == '__main__':
 	# print 'Bernoulli'
 	# testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', True, True, 2)
 
-<<<<<<< HEAD
+
 	# print '8 CATEGORY DATA SET\n'
 	# print 'Multinomial'
 	# testdata('8category/8category.testing.txt', '8category/8category.training.txt', False, False, 8)
 	# print 'Bernoulli'
 	# testdata('8category/8category.testing.txt', '8category/8category.training.txt', True, False, 8)
-=======
-	print '8 CATEGORY DATA SET\n'
-	print 'Multinomial'
-	testdata('8category/8category.testing.txt', '8category/8category.training.txt', False, False, 8)
-	print 'Bernoulli'
-	testdata('8category/8category.testing.txt', '8category/8category.training.txt', True, False, 8)
 
->>>>>>> 894073d1d1645f04763219afb978c2ed1877b912
