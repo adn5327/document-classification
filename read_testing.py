@@ -2,6 +2,9 @@ import read_training as rtrain
 import math
 import infrastructure as infra
 import operator
+import numpy as np
+
+confusion_matrix = None
 
 def figure_out_class(a, train_data, movie):
 	#go to each dictionary
@@ -35,6 +38,8 @@ def testdata(test_filename, train_filename, bernoulli = False, movie = False, nu
 	train_data = rtrain.read_file(train_filename, bernoulli, num_categories)
 	test_file = open(test_filename, 'r')
 	lines = test_file.readlines()
+	global confusion_matrix
+	confusion_matrix = np.zeros((num_categories, num_categories))
 
 	correct_count = 0
 	total_count = 0
@@ -44,7 +49,19 @@ def testdata(test_filename, train_filename, bernoulli = False, movie = False, nu
 		a = line.split()
 		correct_label = int(a[0])
 		predicted_label = figure_out_class(a, train_data, movie)
-
+		if movie:
+			if correct_label == -1:
+				confusion_correct_label = 0
+			else:
+				confusion_correct_label = correct_label
+			if predicted_label == -1:
+				confusion_label = 0
+			else:
+				confusion_label = predicted_label
+		else:
+			confusion_label = predicted_label
+			confusion_correct_label = correct_label
+		confusion_matrix[confusion_correct_label][confusion_label] += 1
 		if correct_label == predicted_label:
 			correct_count+=1
 
@@ -62,8 +79,24 @@ def testdata(test_filename, train_filename, bernoulli = False, movie = False, nu
 			print key
 			del cur_dict[key]
 		print '\n'
+	string = ''
+	for i in range(len(confusion_matrix)):
+		cat_sum = 0
+		string += '\t{}'.format(i)
+		for j in range(len(confusion_matrix[0])):
+			cat_sum += confusion_matrix[i][j]
+		for j in range(len(confusion_matrix[0])):
+			confusion_matrix[i][j] = confusion_matrix[i][j] / cat_sum * 1.0
+	string += '\n'
+	for i in range(len(confusion_matrix)):
+		string += str(i) + ':\t'
+		for j in range(len(confusion_matrix[i])):
+			string += '{0:6.2%}\t'.format(confusion_matrix[i][j])
+		string += '\n'
+	print string
 	test_file.close()
 	print '\n\n\n'
+	# quit()
 
 
 if __name__ == '__main__':
@@ -80,8 +113,17 @@ if __name__ == '__main__':
 	# print 'Bernoulli'
 	# testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', True, True, 2)
 
+<<<<<<< HEAD
 	# print '8 CATEGORY DATA SET\n'
 	# print 'Multinomial'
 	# testdata('8category/8category.testing.txt', '8category/8category.training.txt', False, False, 8)
 	# print 'Bernoulli'
 	# testdata('8category/8category.testing.txt', '8category/8category.training.txt', True, False, 8)
+=======
+	print '8 CATEGORY DATA SET\n'
+	print 'Multinomial'
+	testdata('8category/8category.testing.txt', '8category/8category.training.txt', False, False, 8)
+	print 'Bernoulli'
+	testdata('8category/8category.testing.txt', '8category/8category.training.txt', True, False, 8)
+
+>>>>>>> 894073d1d1645f04763219afb978c2ed1877b912
