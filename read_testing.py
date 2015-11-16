@@ -63,9 +63,25 @@ def testdata(test_filename, train_filename, bernoulli = False, movie = False, nu
 			del cur_dict[key]
 		print '\n'
 	test_file.close()
-
+	print '\n\n\n'
 
 
 if __name__ == '__main__':
 
+	print 'SPAM DATA SET\n'
+	print 'Multinomial'
+	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False, 2)
+	print 'Bernoulli'
 	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', True, False, 2)
+
+	print 'MOVIE DATA SET\n'
+	print 'Multinomial'
+	testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', False, True, 2)
+	print 'Bernoulli'
+	testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', True, True, 2)
+
+	print '8 CATEGORY DATA SET\n'
+	print 'Multinomial'
+	testdata('8category/8category.testing.txt', '8category/8category.training.txt', False, False, 8)
+	print 'Bernoulli'
+	testdata('8category/8category.testing.txt', '8category/8category.training.txt', True, False, 8)
