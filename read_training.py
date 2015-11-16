@@ -1,7 +1,7 @@
 import infrastructure as infra
 
-def read_file(filename, bernoulli):
-	init_obj = infra.classes(2)
+def read_file(filename, bernoulli, num_categories):
+	init_obj = infra.classes(num_categories)
 	labels = open(filename)
 
 	lines = labels.readlines()
@@ -56,7 +56,24 @@ def read_file(filename, bernoulli):
 # 		negative review --> -1
 #		will zero index the negative review
 
+def word_cloud_generator(dataset, train_dat):
+	for i in range(len(train_dat.dicts)):
+		f = open('wordcloud/{}{}'.format(dataset,i),'w')
+		cur_dict = train_dat.dicts[i]
+
+		for word, number in cur_dict.items():
+			for j in range(number):
+				print >>f, word
+
+
+def main():
+	train_dat = read_file('spam_detection/train_email.txt', False, 2)
+	word_cloud_generator('email', train_dat)
+	train_dat = read_file('sentiment/rt-train.txt', False, 2)
+	word_cloud_generator('movie', train_dat)
+	train_dat = read_file('8category/8category.training.txt', False, 8)
+	word_cloud_generator('8category', train_dat)
 
 if __name__ == '__main__':
-	read_file('spam_detection/1train.txt', False)
-	# read_file('spam_detection/train_email.txt', False)
+	main()
+	
