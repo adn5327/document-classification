@@ -55,4 +55,5 @@ def testdata(test_filename, train_filename, bernoulli, movie):
 
 
 if __name__ == '__main__':
-	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False)
+	testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', True, True)
+	# testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False)
