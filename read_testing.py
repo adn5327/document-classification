@@ -18,7 +18,7 @@ def figure_out_class(a, train_data, movie):
 				cur_prob = (cur_dict[key] + 1) / (1.0 * (train_data.total_counts[j] + len(cur_dict)))
 				cur_total += math.log(cur_prob)
 			else:
-				cur_prob = 1 / (1.0 * (train_data.total_counts[j] + len(cur_dict)))
+				cur_prob = 0.001 / (1.0 * (train_data.total_counts[j] + len(cur_dict)))
 				cur_total += math.log(cur_prob)
 
 		prob_per_class.append(cur_total)
@@ -69,19 +69,19 @@ def testdata(test_filename, train_filename, bernoulli = False, movie = False, nu
 if __name__ == '__main__':
 
 	print 'SPAM DATA SET\n'
-	print 'Multinomial'
-	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False, 2)
+	# print 'Multinomial'
+	# testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', False, False, 2)
 	print 'Bernoulli'
 	testdata('spam_detection/test_email.txt', 'spam_detection/train_email.txt', True, False, 2)
 
-	print 'MOVIE DATA SET\n'
-	print 'Multinomial'
-	testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', False, True, 2)
-	print 'Bernoulli'
-	testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', True, True, 2)
+	# print 'MOVIE DATA SET\n'
+	# print 'Multinomial'
+	# testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', False, True, 2)
+	# print 'Bernoulli'
+	# testdata('sentiment/rt-test.txt', 'sentiment/rt-train.txt', True, True, 2)
 
-	print '8 CATEGORY DATA SET\n'
-	print 'Multinomial'
-	testdata('8category/8category.testing.txt', '8category/8category.training.txt', False, False, 8)
-	print 'Bernoulli'
-	testdata('8category/8category.testing.txt', '8category/8category.training.txt', True, False, 8)
+	# print '8 CATEGORY DATA SET\n'
+	# print 'Multinomial'
+	# testdata('8category/8category.testing.txt', '8category/8category.training.txt', False, False, 8)
+	# print 'Bernoulli'
+	# testdata('8category/8category.testing.txt', '8category/8category.training.txt', True, False, 8)
